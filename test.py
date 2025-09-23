@@ -8,7 +8,7 @@ from energy_analysis.emissions import calc_operational_emissions
 from probablistic_approach.mc import generate_noise
 from support_functions.print import generate_summary, print_energy_summary_with_bounds, print_cost_summary_with_bounds, print_financial_summary_with_bounds, plot_discounted_cumulative_cash_flow, plot_monthly_energy_vs_pv
 from support_functions.input_module import get_valid_input
-import support_functions.constants
+from support_functions import constants
 
 case, mc_params = get_valid_input()
 #print(case)
@@ -211,6 +211,7 @@ print_financial_summary_with_bounds(summary)
 plot_discounted_cumulative_cash_flow(summary, final_results, vita)
 
 plot_monthly_energy_vs_pv(final_results)
+
 
 
 
