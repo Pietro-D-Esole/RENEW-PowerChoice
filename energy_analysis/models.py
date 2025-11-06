@@ -47,10 +47,7 @@ def get_default_energy_data():
 
 
 def calculate(params, case, constants, noisematrix, param_type, year):
-    """
-    Revised version of `calculate()` that exactly matches `o_calculate()` for annual losses.
-    Adds monthly breakdown via rad_days.
-    """
+    
     # 1. fetch common geometry & climate inputs
     tmp = get_noise_type(param_type)
     common = case["common_params"]
@@ -58,8 +55,6 @@ def calculate(params, case, constants, noisematrix, param_type, year):
     ndw = common["dwelling_count"]
     s_floor = common["floor_area"] + get_noise_value(noisematrix, case, "common", "floor_area")
     wh = common["wall_height"] + get_noise_value(noisematrix, case, "common", "wall_height")
-
-
 
     # Constants and multipliers to match o_calculate
     million = 1_000_000
@@ -127,7 +122,6 @@ def calculate(params, case, constants, noisematrix, param_type, year):
     qsg = shadow * sun_factor * s_win * rad * ndw * one
     q_s = shadow * alfa * s_wall * rad * ndw * one
     q_w = u_w * s_wall * ndw * hdd * tf_ratio_hour - u_w / he * q_s
-
 
     # Adjust for building type
     q_floor = q_roof = 0
@@ -222,4 +216,5 @@ def estimate_appliance_load(case, params_type):
 
     annual_kwh = total_weekly * weeks * dwelling_count * floor_count
     return annual_kwh
+
 
